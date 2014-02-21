@@ -1,0 +1,60 @@
+#!/bin/sh
+#
+# scan_server  Service-type script to control the scan server
+#
+# This script is copied to /etc/rc.d/init.d
+# and registered with /sbin/chkconfig to run as a Linux service
+#
+# chkconfig: - 80 20
+#
+# kasemirk@ornl.gov
+
+SCAN_SERVER=/home/5hz/work/ihep/home/controls/css/ScanServer
+
+# Default scan server RMI uses 4810, 4811
+# Use 4809 for telnet access
+CONSOLE=4809
+DEBUG="-Djava.rmi.server.logCalls=true -Dsun.rmi.server.logLevel=VERBOSE -Dsun.rmi.transport.logLevel=VERBOSE -Dsun.rmi.transport.tcp.logLevel=VERBOSE"
+DEBUG=""
+
+
+# Combine global settings with beam-line settings
+INI=/tmp/scan_server.ini
+cat /home/5hz/work/ihep/home/controls/css/settings.ini /home/5hz/work/ihep/home/controls/bldemo/css/settings.ini >$INI
+
+ARGS="-console $CONSOLE -data $SCAN_SERVER/workspace -consoleLog -pluginCustomization $INI -vmargs -Djava.rmi.server.hostname=localhost $DEBUG"
+USER=5hz
+
+unset DISPLAY
+
+function start()
+{
+	su - $USER -c "nohup $SCAN_SERVER/ScanServer $ARGS >>$SCAN_SERVER/console.log 2>&1 &"
+}
+
+function stop()
+{
+	echo close | nc localhost $CONSOLE
+}
+
+case $1 in
+start)
+	start
+	;;
+stop)
+	stop
+	;;
+restart)
+	stop
+	start
+	;;
+status)
+	ps aux | fgrep ScanServer | grep -v fgrep
+	;;
+console)
+	telnet localhost $CONSOLE
+	;;
+*)	echo "Usage: $0 {start|stop|restart|status|console}"
+        exit 2
+esac
+

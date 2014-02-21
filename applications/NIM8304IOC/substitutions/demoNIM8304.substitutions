@@ -1,0 +1,21 @@
+#macros:
+#S: system
+#SS: subsystem
+#D:  device
+#CH_NAME: channel name
+#CH: channel number 0-5
+#PORT: asyn port for the crate
+#ISET_MAX: maximum ISet value
+
+file "db/nim8304.template" {
+    { S=Demo, SS=HV, D=NIM8304, PORT=demoNIM8304}
+}
+
+file "db/nim8304ch.template" {
+    { S=Demo, SS=HV, D=NIM8304, CH=0, CH_NAME=P6V, PORT=demoNIM8304, ISET_MAX=50}
+	{ S=Demo, SS=HV, D=NIM8304, CH=1, CH_NAME=N6V, PORT=demoNIM8304, ISET_MAX=50}
+	{ S=Demo, SS=HV, D=NIM8304, CH=2, CH_NAME=P12V, PORT=demoNIM8304, ISET_MAX=19}
+	{ S=Demo, SS=HV, D=NIM8304, CH=3, CH_NAME=N12V, PORT=demoNIM8304, ISET_MAX=19}
+	{ S=Demo, SS=HV, D=NIM8304, CH=4, CH_NAME=P24V, PORT=demoNIM8304, ISET_MAX=9}
+	{ S=Demo, SS=HV, D=NIM8304, CH=5, CH_NAME=N24V, PORT=demoNIM8304, ISET_MAX=9}
+}

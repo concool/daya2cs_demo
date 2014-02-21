@@ -1,0 +1,80 @@
+#macros:
+#S: system
+#SS: subsystem
+#D:  device
+#PORT: asyn port for the crate
+
+# % autosave 2 SCAN
+record(seq, "$(S):$(SS):$(D):Update") {
+  field(DESC, "The Update trigger")
+  field(DOL1, "1")
+  field(LNK1, "$(S):$(SS):$(D):CH0Trigger.PROC")
+  field(DOL2, "1")
+  field(LNK2, "$(S):$(SS):$(D):CH1Trigger.PROC")
+  field(DOL3, "1")
+  field(LNK3, "$(S):$(SS):$(D):CH2Trigger.PROC")
+  field(DOL4, "1")
+  field(LNK4, "$(S):$(SS):$(D):CH3Trigger.PROC")
+  field(DOL5, "1")
+  field(LNK5, "$(S):$(SS):$(D):CH4Trigger.PROC")
+  field(DOL6, "1")
+  field(LNK6, "$(S):$(SS):$(D):CH5Trigger.PROC")
+  field(SCAN, "1 second")
+  field(PINI, "YES")
+}
+
+# Trigger PV for each channel
+record(longout, "$(S):$(SS):$(D):CH0Trigger") {
+  field(VAL, "0")
+  field(PINI, "YES")  
+}
+record(longout, "$(S):$(SS):$(D):CH1Trigger") {
+  field(VAL, "0")
+  field(PINI, "YES")  
+}
+record(longout, "$(S):$(SS):$(D):CH2Trigger") {
+  field(VAL, "0")
+  field(PINI, "YES")  
+}
+record(longout, "$(S):$(SS):$(D):CH3Trigger") {
+  field(VAL, "0")
+  field(PINI, "YES")  
+}
+record(longout, "$(S):$(SS):$(D):CH4Trigger") {
+  field(VAL, "0")
+  field(PINI, "YES")  
+}
+record(longout, "$(S):$(SS):$(D):CH5Trigger") {
+  field(VAL, "0")
+  field(PINI, "YES")  
+}
+
+record(bo, "$(S):$(SS):$(D):Disable") {
+  field(DESC, "Disable all auto-processing PVs")
+  field(PINI, "YES")
+  field(VAL, "0")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Enabled")
+  field(ONAM, "Disabled")
+}
+
+record(stringin, "$(S):$(SS):$(D):AnyOutput"){
+	field(DESC, "Any output from the crate")
+	field(DTYP, "stream")
+	field(INP, "@nim8304.proto readall $(PORT)")
+	field(SCAN, "I/O Intr")
+}
+
+record(stringin, "$(S):$(SS):$(D):CMDOutput"){
+	field(DESC, "Output from general command")
+	field(DTYP, "stream")
+	field(INP, "@nim8304.proto readall $(PORT)")
+}
+record(stringout, "$(S):$(SS):$(D):CMD"){
+	field(DESC, "General command to the crate")
+	field(DTYP, "stream")
+	field(OUT, "@nim8304.proto generalcmd $(PORT)")
+	field(FLNK, "$(S):$(SS):$(D):CMDOutput")
+}
+
+
