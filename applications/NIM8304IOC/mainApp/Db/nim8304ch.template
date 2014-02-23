@@ -14,7 +14,7 @@ record(seq, "$(S):$(SS):$(D):CH$(CH):Update") {
   field(DOL2, "1")
   field(LNK2, "$(S):$(SS):$(D):$(CH_NAME):IMon.PROC")
   field(DOL3, "1")
-  field(LNK3, ""$(S):$(SS):$(D):$(CH_NAME):Status.PROC")  
+  field(LNK3, "$(S):$(SS):$(D):$(CH_NAME):Status.PROC")  
 }
 
 record(longout, "$(S):$(SS):$(D):CH$(CH)Trigger") {
