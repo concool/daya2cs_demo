@@ -2,5 +2,4 @@ db/
 bin/
 dbd/
 O.*/
-
-
+envPaths
