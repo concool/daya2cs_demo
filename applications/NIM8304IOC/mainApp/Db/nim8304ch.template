@@ -13,6 +13,8 @@ record(seq, "$(S):$(SS):$(D):CH$(CH):Update") {
   field(LNK1, "$(S):$(SS):$(D):$(CH_NAME):VMon.PROC")
   field(DOL2, "1")
   field(LNK2, "$(S):$(SS):$(D):$(CH_NAME):IMon.PROC")
+  field(DOL3, "1")
+  field(LNK3, ""$(S):$(SS):$(D):$(CH_NAME):Status.PROC")  
 }
 
 record(longout, "$(S):$(SS):$(D):CH$(CH)Trigger") {
@@ -55,7 +57,6 @@ record(ai, "$(S):$(SS):$(D):$(CH_NAME):ISet:RBV") {
   field(PINI, "YES")
   field(HOPR, "$(ISET_MAX)")
   field(LOPR, "0")
-#  field(SDIS, "$(S):$(SS):$(D):Disable")
 }
 
 record(ao, "$(S):$(SS):$(D):$(CH_NAME):ISet") {
@@ -78,4 +79,51 @@ record(stringin, "$(S):$(SS):$(D):$(CH_NAME):Name") {
   field(INP, "@nim8304.proto readstring($(CH),NAME) $(PORT)")
    field(PINI, "YES")
 }
+
+record(mbbiDirect, "$(S):$(SS):$(D):$(CH_NAME):Status") {
+  field(DESC, "All Status")
+  field(DTYP, "stream")
+  field(INP, "@nim8304.proto readint($(CH),STAT) $(PORT)")
+  field(SDIS, "$(S):$(SS):$(D):Disable")
+}
+
+record(bi, "$(S):$(SS):$(D):$(CH_NAME):OnOffStatus") {
+  field(DESC, "Channel's On/Off status")
+  field(INP, "$(S):$(SS):$(D):$(CH_NAME):Status:RBV.B0 CP")
+  field(ONAM, "ON")
+  field(ZNAM, "OFF")
+}
+
+
+record(bi, "$(S):$(SS):$(D):$(CH_NAME):OverCurrent") {
+  field(DESC, "Provided current is higher than ISet")
+  field(INP, "$(S):$(SS):$(D):$(CH_NAME):Status:RBV.B1 CP")
+  field(ONAM, "Bad")
+  field(ZNAM, "OK")
+}
+
+
+record(bi, "$(S):$(SS):$(D):$(CH_NAME):OverVoltage") {
+  field(DESC, "VMON is higher than Vnominal+10%")
+  field(INP, "$(S):$(SS):$(D):$(CH_NAME):Status:RBV.B2 CP")
+  field(ONAM, "Bad")
+  field(ZNAM, "OK")
+}
+
+record(bi, "$(S):$(SS):$(D):$(CH_NAME):UnderVoltage") {
+  field(DESC, "VMON is lower than Vnominal-10%")
+  field(INP, "$(S):$(SS):$(D):$(CH_NAME):Status:RBV.B3 CP")
+  field(ONAM, "Bad")
+  field(ZNAM, "OK")
+}
+
+record(bi, "$(S):$(SS):$(D):$(CH_NAME):CalibrationError") {
+  field(DESC, "Error on coefficient of calibration")
+  field(INP, "$(S):$(SS):$(D):$(CH_NAME):Status:RBV.B8 CP")
+  field(ONAM, "Bad")
+  field(ZNAM, "OK")
+}
+
+
+
 
