@@ -89,7 +89,7 @@ record(mbbiDirect, "$(S):$(SS):$(D):$(CH_NAME):Status") {
 
 record(bi, "$(S):$(SS):$(D):$(CH_NAME):OnOffStatus") {
   field(DESC, "Channel's On/Off status")
-  field(INP, "$(S):$(SS):$(D):$(CH_NAME):Status:RBV.B0 CP")
+  field(INP, "$(S):$(SS):$(D):$(CH_NAME):Status.B0 CP")
   field(ONAM, "ON")
   field(ZNAM, "OFF")
 }
@@ -97,7 +97,7 @@ record(bi, "$(S):$(SS):$(D):$(CH_NAME):OnOffStatus") {
 
 record(bi, "$(S):$(SS):$(D):$(CH_NAME):OverCurrent") {
   field(DESC, "Provided current is higher than ISet")
-  field(INP, "$(S):$(SS):$(D):$(CH_NAME):Status:RBV.B1 CP")
+  field(INP, "$(S):$(SS):$(D):$(CH_NAME):Status.B1 CP")
   field(ONAM, "Bad")
   field(ZNAM, "OK")
 }
@@ -105,14 +105,14 @@ record(bi, "$(S):$(SS):$(D):$(CH_NAME):OverCurrent") {
 
 record(bi, "$(S):$(SS):$(D):$(CH_NAME):OverVoltage") {
   field(DESC, "VMON is higher than Vnominal+10%")
-  field(INP, "$(S):$(SS):$(D):$(CH_NAME):Status:RBV.B2 CP")
+  field(INP, "$(S):$(SS):$(D):$(CH_NAME):Status.B2 CP")
   field(ONAM, "Bad")
   field(ZNAM, "OK")
 }
 
 record(bi, "$(S):$(SS):$(D):$(CH_NAME):UnderVoltage") {
   field(DESC, "VMON is lower than Vnominal-10%")
-  field(INP, "$(S):$(SS):$(D):$(CH_NAME):Status:RBV.B3 CP")
+  field(INP, "$(S):$(SS):$(D):$(CH_NAME):Status.B3 CP")
   field(ONAM, "Bad")
   field(ZNAM, "OK")
 }
