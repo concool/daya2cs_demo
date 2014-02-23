@@ -1,0 +1,20 @@
+PV名格式：System:SubSystem:Device:DeviceSpecificPart
+System：总系统，例如：Demo，ETOF
+SubSystem：子系统，例如：HV
+Device：设备名称及编号，例如：NIM8304_50. 其中，50是该机箱的编号
+DeviceSpecificPart：该设备具体的某路信号名，例如：ISet， ISet。RBV
+
+单词格式：每个单词以大写开头，例如DeviceSpecificPart。如果是缩写，则全部大写，例如 HV,NIM
+输出信号一般以Set结尾，例如ISet. 对应的输入信号则加以:RBV, 例如: ISet:RBV.对于一般的读入信号，如果没有对应的输出信号，则不必加:RBV.
+下面是PV名的一些例子：
+Demo:HV:NIM8304_50:P6V:VMon
+Demo:HV:NIM8304:P6V:ISet
+Demo:HV:NIM8304:P6V:ISet:RBV
+
+宏命名
+所有的宏定义都必须是大写格式
+$(S): System
+$(SS): SubSystem
+$(D):Device
+$(CH): Channel Number
+$(CH_NAME)：Channel Name
