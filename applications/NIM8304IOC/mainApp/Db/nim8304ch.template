@@ -13,8 +13,6 @@ record(seq, "$(S):$(SS):$(D):CH$(CH):Update") {
   field(LNK1, "$(S):$(SS):$(D):$(CH_NAME):VMon.PROC")
   field(DOL2, "1")
   field(LNK2, "$(S):$(SS):$(D):$(CH_NAME):IMon.PROC")
-  field(DOL3, "1")
-  field(LNK3, "$(S):$(SS):$(D):$(CH_NAME):ISet:RBV.PROC") 
 }
 
 record(longout, "$(S):$(SS):$(D):CH$(CH)Trigger") {
@@ -39,13 +37,25 @@ record(ai, "$(S):$(SS):$(D):$(CH_NAME):IMon") {
   field(SDIS, "$(S):$(SS):$(D):Disable")
 }
 
+record(ai, "$(S):$(SS):$(D):$(CH_NAME):IMon") {
+  field(DESC, "Monitor Current")
+  field(DTYP, "stream")
+  field (INP,  "@nim8304.proto readai($(CH),IMON) $(PORT)")
+  field(PREC, "2")
+  field(EGU, "V")
+  field(SDIS, "$(S):$(SS):$(D):Disable")
+}
+
 record(ai, "$(S):$(SS):$(D):$(CH_NAME):ISet:RBV") {
   field(DESC, "Current Limit")
   field(DTYP, "stream")
   field(INP,  "@nim8304.proto readai($(CH),ISET) $(PORT)")
   field(PREC, "2")
   field(EGU, "A")
-  field(SDIS, "$(S):$(SS):$(D):Disable")
+  field(PINI, "YES")
+  field(HOPR, "$(ISET_MAX)")
+  field(LOPR, "0")
+#  field(SDIS, "$(S):$(SS):$(D):Disable")
 }
 
 record(ao, "$(S):$(SS):$(D):$(CH_NAME):ISet") {
@@ -58,6 +68,8 @@ record(ao, "$(S):$(SS):$(D):$(CH_NAME):ISet") {
   field(DRVH, "$(ISET_MAX)")
   field(DRVL, "0")
   field(PINI, "NO")
+  field(HOPR, "$(ISET_MAX)")
+  field(LOPR, "0")
 }
 
 record(stringin, "$(S):$(SS):$(D):$(CH_NAME):Name") {
