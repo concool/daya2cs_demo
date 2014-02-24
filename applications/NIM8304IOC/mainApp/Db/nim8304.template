@@ -19,7 +19,28 @@ record(seq, "$(S):$(SS):$(D):Update") {
   field(LNK5, "$(S):$(SS):$(D):CH4Trigger.PROC")
   field(DOL6, "1")
   field(LNK6, "$(S):$(SS):$(D):CH5Trigger.PROC")
+  field(DOL6, "1")
+  field(LNK6, "$(S):$(SS):$(D):FanSpeedSet:RBV.PROC")  
+  field(DOL7, "1")
+  field(LNK7, "$(S):$(SS):$(D):Status.PROC")  
+  field(DOL8, "1")
+  field(LNK8, "$(S):$(SS):$(D):PSTemp.PROC")  
+  field(DOL9, "1")
+  field(LNK9, "$(S):$(SS):$(D):FanTemp.PROC")  
+  field(DOLA, "1")
+  field(LNKA, "$(S):$(SS):$(D):Update2.PROC")  
   field(SCAN, "1 second")
+  field(PINI, "YES")
+}
+
+record(seq, "$(S):$(SS):$(D):Update2") {
+  field(DESC, "The Update trigger 2")
+  field(DOL1, "1")
+  field(LNK1, "$(S):$(SS):$(D):Fan1Speed.PROC")  
+  field(DOL2, "1")
+  field(LNK2, "$(S):$(SS):$(D):Fan2Speed.PROC")  
+  field(DOL3, "1")
+  field(LNK3, "$(S):$(SS):$(D):Fan3Speed.PROC")  
   field(PINI, "YES")
 }
 
@@ -77,4 +98,189 @@ record(stringout, "$(S):$(SS):$(D):CMD"){
 	field(FLNK, "$(S):$(SS):$(D):CMDOutput")
 }
 
+record(mbbiDirect, "$(S):$(SS):$(D):Status") {
+  field(DESC, "Crate Status")
+  field(DTYP, "stream")
+  field(INP, "@nim8304.proto readint(6,CRST) $(PORT)")
+  field(SDIS, "$(S):$(SS):$(D):Disable")
+}
 
+record(bi, "$(S):$(SS):$(D):PowerState") {
+  field(DESC, "Crate's Power On/Off status")
+  field(INP, "$(S):$(SS):$(D):Status.B0 CP")
+  field(ONAM, "ON")
+  field(ZNAM, "OFF")
+}
+
+record(bi, "$(S):$(SS):$(D):LineAlarm") {
+  field(DESC, "Line ALARM PS active")
+  field(INP, "$(S):$(SS):$(D):Status.B1 CP")
+  field(ONAM, "Alarm")
+  field(ZNAM, "No Alarm")
+}
+
+record(bi, "$(S):$(SS):$(D):PSCtrTempFail") {
+  field(DESC, "Temperature on PS Ctr < 5°C or > 65°C")
+  field(INP, "$(S):$(SS):$(D):Status.B2 CP")
+  field(ONAM, "FAIL")
+  field(ZNAM, "OK")
+}
+
+record(bi, "$(S):$(SS):$(D):PSTempFail") {
+  field(DESC, "Temperature on PS > 70°C")
+  field(INP, "$(S):$(SS):$(D):Status.B3 CP")
+  field(ONAM, "FAIL")
+  field(ZNAM, "OK")
+}
+
+record(bi, "$(S):$(SS):$(D):PSOverCurrent") {
+  field(DESC, "PS in Over Current")
+  field(INP, "$(S):$(SS):$(D):Status.B4 CP")
+  field(ONAM, "Bad")
+  field(ZNAM, "OK")
+}
+
+record(bi, "$(S):$(SS):$(D):PSOutVoltage") {
+  field(DESC, "PS Voltage out of range")
+  field(INP, "$(S):$(SS):$(D):Status.B5 CP")
+  field(ONAM, "Bad")
+  field(ZNAM, "OK")
+}
+
+record(bi, "$(S):$(SS):$(D):FanState") {
+  field(DESC, "PS in Over Current")
+  field(INP, "$(S):$(SS):$(D):Status.B9 CP")
+  field(ONAM, "ON")
+  field(ZNAM, "OFF")
+}
+
+record(bi, "$(S):$(SS):$(D):Fan1Fail") {
+  field(DESC, "Fan 1 Fail")
+  field(INP, "$(S):$(SS):$(D):Status.BA CP")
+  field(ONAM, "Fail")
+  field(ZNAM, "OK")
+}
+record(bi, "$(S):$(SS):$(D):Fan2Fail") {
+  field(DESC, "Fan 1 Fail")
+  field(INP, "$(S):$(SS):$(D):Status.BB CP")
+  field(ONAM, "Fail")
+  field(ZNAM, "OK")
+}
+record(bi, "$(S):$(SS):$(D):Fan3Fail") {
+  field(DESC, "Fan 3 Fail")
+  field(INP, "$(S):$(SS):$(D):Status.BC CP")
+  field(ONAM, "Fail")
+  field(ZNAM, "OK")
+}
+
+record(bi, "$(S):$(SS):$(D):FanTempFail") {
+  field(DESC, " Fan Temperature < 5°C or > 65°C")
+  field(INP, "$(S):$(SS):$(D):Status.BD CP")
+  field(ONAM, "Fail")
+  field(ZNAM, "OK")
+}
+
+record(bo, "$(S):$(SS):$(D):PowerSet") {
+  field(DESC, "Power On/Off the crate")
+  field(DTYP, "stream")  
+  field(OUT, "@nim8304.proto writestring $(PORT)")
+  field(ONAM, "ON")
+  field(ZNAM, "OFF")
+  field(FLNK, "$(S):$(SS):$(D):Status")
+}
+
+record(bo, "$(S):$(SS):$(D):ClearAlarm") {
+  field(DESC, "Clear Alarm")
+  field(DTYP, "stream")  
+  field(OUT, "@nim8304.proto writestring $(PORT)")
+  field(ONAM, "CLR")
+  field(ZNAM, "CLR")
+  field(HIGH, "0.1")
+  field(FLNK, "$(S):$(SS):$(D):Status")  
+}
+
+record(longin, "$(S):$(SS):$(D):Fan1Speed") {
+  field(DESC, "Fan 1 Speed")
+  field(DTYP, "stream")
+  field (INP,  "@nim8304.proto readint(6,FAN1) $(PORT)")
+  field(EGU, "RPM")
+  field(SDIS, "$(S):$(SS):$(D):Disable")
+}
+
+record(longin, "$(S):$(SS):$(D):Fan2Speed") {
+  field(DESC, "Fan 2 Speed")
+  field(DTYP, "stream")
+  field (INP,  "@nim8304.proto readint(6,FAN2) $(PORT)")
+  field(EGU, "RPM")
+  field(SDIS, "$(S):$(SS):$(D):Disable")
+}
+
+record(longin, "$(S):$(SS):$(D):Fan3Speed") {
+  field(DESC, "Fan 3 Speed")
+  field(DTYP, "stream")
+  field (INP,  "@nim8304.proto readint(6,FAN3) $(PORT)")
+  field(EGU, "RPM")
+  field(SDIS, "$(S):$(SS):$(D):Disable")
+}
+
+record(ai, "$(S):$(SS):$(D):PSTemp") {
+  field(DESC, "PS Controller Temperature")
+  field(DTYP, "stream")
+  field (INP,  "@nim8304.proto readai(6,PSTEMP) $(PORT)")
+  field(PREC, "2")
+  field(EGU, "C")
+  field(SDIS, "$(S):$(SS):$(D):Disable")
+}
+
+record(ai, "$(S):$(SS):$(D):FanTemp") {
+  field(DESC, "Fan Unit Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@nim8304.proto readai(6,FUTEMP) $(PORT)")
+  field(PREC, "2")
+  field(EGU, "C")
+  field(SDIS, "$(S):$(SS):$(D):Disable")
+}
+
+record(mbbi, "$(S):$(SS):$(D):FanSpeedSet:RBV") {
+  field(DESC, "Readback of set value of Fan Speed")
+  field(DTYP, "stream")
+  field(INP,  "@nim8304.proto readint(6,FANSP) $(PORT)")
+  field(PINI, "YES")
+  field(SDIS, "$(S):$(SS):$(D):Disable")
+  field(ZRVL, "0")
+  field(ZRST, "Fan Off")
+  field(ONVL, "1")
+  field(ONST, "1500 RPM")
+  field(TWVL, "2")
+  field(TWST, "1800 RPM")
+  field(THVL, "3")
+  field(THST, "2000 RPM")
+  field(FRVL, "4")
+  field(FRST, "2300 RPM")
+  field(FVVL, "5")
+  field(FVST, "2600 RPM")
+  field(SXVL, "6")
+  field(SXST, "3000 RPM")
+}
+
+record(mbbo, "$(S):$(SS):$(D):FanSpeedSet") {
+  field(DESC, "Set Fan Speed")
+  field(DTYP, "stream")
+  field(FLNK, "$(S):$(SS):$(D):FanSpeedSet:RBV")
+  field(OUT, "@nim8304.proto writeint(6,FANSP) $(PORT)")
+  field(PINI, "NO")
+  field(ZRVL, "0")
+  field(ZRST, "Fan Off")
+  field(ONVL, "1")
+  field(ONST, "1500 RPM")
+  field(TWVL, "2")
+  field(TWST, "1800 RPM")
+  field(THVL, "3")
+  field(THST, "2000 RPM")
+  field(FRVL, "4")
+  field(FRST, "2300 RPM")
+  field(FVVL, "5")
+  field(FVST, "2600 RPM")
+  field(SXVL, "6")
+  field(SXST, "3000 RPM")
+}

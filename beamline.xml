@@ -107,8 +107,17 @@
                       <name>nim8304</name>
                     <script>/home/controls/bldemo/applications/NIM8304IOC/iocBoot/iocmain/st.cmd</script>
                     <console>4815</console>
-                                                            </ioc>
-                                                                                                            </device>
+                    </ioc>
+                </device>
+                           <device active="true">
+                                                  <name>N1471 IOC</name>
+                                                                      <ioc>
+                                                                                            <name>n1471</name>
+                                                                                                                <script>/home/controls/bldemo/applications/N1471IOC/iocBoot/iocmain/st.cmd</script>
+                                                                                                                                    <console>4816</console>
+                                                                                                                                                        </ioc>
+                                                                                                                                                                        </device>
+
 
     </devices>
 </beamline>

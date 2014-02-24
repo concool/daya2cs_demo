@@ -5,5 +5,7 @@ readai{ out "$CMD:MON,CH:\$1,PAR:\$2"; in "#CMD:OK,VAL:%f"; }
 writeao{ out "$CMD:SET,CH:\$1,PAR:\$2,VAL:%f"; in "#CMD:OK"; @init{readai;};}
 readstring{out "$CMD:MON,CH:\$1,PAR:\$2"; in "#CMD:OK,VAL:%s";}
 readint{ out "$CMD:MON,CH:\$1,PAR:\$2"; in "#CMD:OK,VAL:%u";}
+writeint{ out "$CMD:SET,CH:\$1,PAR:\$2,VAL:%u"; in "#CMD:OK"; @init{readint;};}
+writestring{ out "$CMD:SET,CH:6,PAR:%s"; in "#CMD:OK";}
 readall{in "%s";}
 generalcmd{out "%s";}

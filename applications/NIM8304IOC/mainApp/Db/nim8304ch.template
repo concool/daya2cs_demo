@@ -15,6 +15,9 @@ record(seq, "$(S):$(SS):$(D):CH$(CH):Update") {
   field(LNK2, "$(S):$(SS):$(D):$(CH_NAME):IMon.PROC")
   field(DOL3, "1")
   field(LNK3, "$(S):$(SS):$(D):$(CH_NAME):Status.PROC")  
+  field(DOL4, "1")
+  field(LNK4, "$(S):$(SS):$(D):$(CH_NAME):ISet:RBV.PROC")
+  
 }
 
 record(longout, "$(S):$(SS):$(D):CH$(CH)Trigger") {
@@ -44,7 +47,7 @@ record(ai, "$(S):$(SS):$(D):$(CH_NAME):IMon") {
   field(DTYP, "stream")
   field (INP,  "@nim8304.proto readai($(CH),IMON) $(PORT)")
   field(PREC, "2")
-  field(EGU, "V")
+  field(EGU, "A")
   field(SDIS, "$(S):$(SS):$(D):Disable")
 }
 
@@ -57,6 +60,7 @@ record(ai, "$(S):$(SS):$(D):$(CH_NAME):ISet:RBV") {
   field(PINI, "YES")
   field(HOPR, "$(ISET_MAX)")
   field(LOPR, "0")
+  field(SDIS, "$(S):$(SS):$(D):Disable")
 }
 
 record(ao, "$(S):$(SS):$(D):$(CH_NAME):ISet") {
@@ -64,7 +68,7 @@ record(ao, "$(S):$(SS):$(D):$(CH_NAME):ISet") {
   field(DTYP, "stream")
   field(FLNK, "$(S):$(SS):$(D):$(CH_NAME):ISet:RBV")
   field(OUT, "@nim8304.proto writeao($(CH),ISET) $(PORT)")
-  field(PREC, "1")
+  field(PREC, "2")
   field(EGU, "A")
   field(DRVH, "$(ISET_MAX)")
   field(DRVL, "0")
