@@ -43,7 +43,7 @@
     <auto_size>false</auto_size>
     <scripts />
     <zoom_to_fit>false</zoom_to_fit>
-    <height>385</height>
+    <height>355</height>
     <name>Linking Container</name>
     <scale_options>
       <width_scalable>true</width_scalable>
@@ -63,8 +63,8 @@
     <font>
       <opifont.name fontName="Segoe UI" height="9" style="0">Default</opifont.name>
     </font>
-    <width>553</width>
-    <border_style>3</border_style>
+    <width>535</width>
+    <border_style>0</border_style>
     <rules />
     <border_width>1</border_width>
     <border_color>
