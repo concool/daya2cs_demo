@@ -1,16 +1,16 @@
 #!/bin/sh
 
-CSS=/home/5hz/work/ihep/home/controls/css/CSS_EPICS_3.1.4
+CSS=/home/controls/css/CSS_EPICS_3.2.14
 
 
 mkdir -p $HOME/CSS
 LOG=/tmp/css_`date +%Y-%m-%d-%H-%M-%S`.log
 #WS=$HOME/CSS/Default
-WS=/home/5hz/work/ihep/home/controls/css/workspaces/$USER
+WS=/home/controls/css/workspaces/$USER
 
 # Create combined settings
 INI=/tmp/css$$.ini
-cat /home/5hz/work/ihep/home/controls/css/settings.ini /home/5hz/work/ihep/home/controls/bldemo/css/settings.ini >$INI
+cat /home/controls/css/settings.ini /home/controls/bldemo/css/settings.ini >$INI
 
-$CSS/css -consoleLog -pluginCustomization $INI -workspace_prompt $WS -share_link /home/5hz/work/ihep/home/controls/share=/share,/home/5hz/work/ihep/home/controls/bldemo/opi=/bldemo/opi,/home/5hz/work/ihep/home/controls/bldemo/scan=/bldemo/scan "$@" >$LOG 2>&1  &
+$CSS/css -consoleLog -pluginCustomization $INI -workspace_prompt $WS -share_link /home/controls/share=/share,/home/controls/bldemo/opi=/bldemo/opi,/home/home/controls/bldemo/scan=/bldemo/scan "$@" >$LOG 2>&1  &
 
