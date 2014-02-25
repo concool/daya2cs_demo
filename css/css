@@ -12,5 +12,5 @@ WS=/home/controls/css/workspaces/$USER
 INI=/tmp/css$$.ini
 cat /home/controls/css/settings.ini /home/controls/bldemo/css/settings.ini >$INI
 
-$CSS/css -consoleLog -pluginCustomization $INI -workspace_prompt $WS -share_link /home/controls/share=/share,/home/controls/bldemo/opi=/bldemo/opi,/home/home/controls/bldemo/scan=/bldemo/scan "$@" >$LOG 2>&1  &
+$CSS/css -consoleLog -pluginCustomization $INI -workspace_prompt $WS -share_link /home/controls/bldemo/opi=/bldemo/opi "$@" >$LOG 2>&1  &
 
