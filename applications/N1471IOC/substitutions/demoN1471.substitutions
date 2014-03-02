@@ -15,9 +15,9 @@ pattern { S, SS, D, ADDR, PORT }
 file db/n1471ch.template
 {
 pattern {S, SS, D, ADDR, CH, PORT }
-     { "Demo", "HV", "N1471", "0", "demoN1471" }
-     { "Demo", "HV", "N1471", "1", "demoN1471" }
-     { "Demo", "HV", "N1471", "2", "demoN1471" }
-     { "Demo", "HV", "N1471", "3", "demoN1471" }
+     { "Demo", "HV", "N1471", "0", "0", "demoN1471" }
+     { "Demo", "HV", "N1471", "0", "1", "demoN1471" }
+     { "Demo", "HV", "N1471", "0", "2", "demoN1471" }
+     { "Demo", "HV", "N1471", "0", "3", "demoN1471" }
 }
 
