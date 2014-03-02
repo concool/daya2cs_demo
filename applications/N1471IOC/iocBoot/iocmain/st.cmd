@@ -13,12 +13,12 @@ epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TOP)/protocol"
 ## Register all support components
 dbLoadDatabase "dbd/main.dbd"
 main_registerRecordDeviceDriver pdbbase
-drvAsynIPPortConfigure("port","192.168.37.50:8100",0,0,0)
+drvAsynIPPortConfigure("demoN1471","192.168.37.50:8100",0,0,0)
 
 
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=chenxhHost")
-dbLoadTemplate "substitutions/demoSys.substitutions"
+dbLoadTemplate "substitutions/demoN1471.substitutions"
 cd ${TOP}/iocBoot/${IOC}
 iocInit
 

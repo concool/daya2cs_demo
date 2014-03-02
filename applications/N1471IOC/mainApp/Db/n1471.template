@@ -1,10 +1,10 @@
-#macros:
-#S: system
-#SS: subsystem
-#D:  device
-#ADDR: Board Address
-#CH: channel number 0-3
-#PORT: asyn port for the crate
+#Database file for each board
+# Macros:
+# S: system
+# SS: subsystem
+# D:  device
+# ADDR: Board Address
+# PORT: asyn port for the crate
 
 record(seq, "$(S):$(SS):$(D):BD$(ADDR):Update") {
   field(DESC, "Update Board Params")
