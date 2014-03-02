@@ -68,7 +68,7 @@ record(bo, "$(S):$(SS):$(D):BD$(ADDR):Disable") {
 record(stringin, "$(S):$(SS):$(D):BD$(ADDR):BDName") {
   field(DESC, "BoardName")
   field(DTYP, "stream")
-  field(INP, "@n1471.proto readstring($(ADDR),BDNAME,$(S):$(SS):$(D):BD$(ADDR)) $(PORT)")
+  field(INP, "@n1471.proto readstring($(ADDR),BDNAME) $(PORT)")
   field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
   field(PINI, "YES")
 }
@@ -76,7 +76,7 @@ record(stringin, "$(S):$(SS):$(D):BD$(ADDR):BDName") {
 record(stringin, "$(S):$(SS):$(D):BD$(ADDR):ChNum") {
   field(DESC, "Board Number of Channels")
   field(DTYP, "stream")
-  field(INP, "@n1471.proto readstring($(ADDR),BDNCH,$(S):$(SS):$(D):BD$(ADDR)) $(PORT)")
+  field(INP, "@n1471.proto readstring($(ADDR),BDNCH) $(PORT)")
   field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
     field(PINI, "YES")
 
@@ -86,28 +86,28 @@ record(stringin, "$(S):$(SS):$(D):BD$(ADDR):ChNum") {
 record(stringin, "$(S):$(SS):$(D):BD$(ADDR):FWRelease") {
   field(DESC, "Board Firmware release")
   field(DTYP, "stream")
-  field(INP, "@n1471.proto readstring($(ADDR),BDFREL,$(S):$(SS):$(D):BD$(ADDR)) $(PORT)")
+  field(INP, "@n1471.proto readstring($(ADDR),BDFREL) $(PORT)")
   field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
 }
 
 record(stringin, "$(S):$(SS):$(D):BD$(ADDR):SerialNum") {
   field(DESC, "Board Serial number")
   field(DTYP, "stream")
-  field(INP, "@n1471.proto readstring($(ADDR),BDSNUM,$(S):$(SS):$(D):BD$(ADDR)) $(PORT)")
+  field(INP, "@n1471.proto readstring($(ADDR),BDSNUM) $(PORT)")
   field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
 }
 
 record(stringin, "$(S):$(SS):$(D):BD$(ADDR):Intlock") {
   field(DESC, "Board Interlock")
   field(DTYP, "stream")
-  field(INP, "@n1471.proto readstring($(ADDR),BDILK,$(S):$(SS):$(D):BD$(ADDR)) $(PORT)")
+  field(INP, "@n1471.proto readstring($(ADDR),BDILK) $(PORT)")
   field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
 }
 
 record(mbbiDirect, "$(S):$(SS):$(D):BD$(ADDR):BDAlarm") {
   field(DESC, "Board Alarm Status")
   field(DTYP, "stream")
-  field(INP, "@n1471.proto readint($(ADDR),BDALARM,$(S):$(SS):$(D):BD$(ADDR)) $(PORT)")
+  field(INP, "@n1471.proto readint($(ADDR),BDALARM) $(PORT)")
   field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
 }
 
