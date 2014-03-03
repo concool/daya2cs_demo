@@ -18,3 +18,10 @@ writechan { out "$BD:\$1,CMD:SET,CH:\$2,PAR:\$3,VAL:%f"; in "#BD:%*d,CMD:OK"; @i
 ## Write channel on/off
 writechanon { out "$BD:\$1,CMD:SET,CH:\$2,PAR:%s"; in "#BD:%*d,CMD:OK"; }
 
+## Read all input
+readall{in "%s";}
+
+## general command
+generalcmd{out "%s";}
+
+

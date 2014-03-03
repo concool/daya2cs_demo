@@ -6,24 +6,6 @@
 # ADDR: Board Address
 # PORT: asyn port for the crate
 
-record(seq, "$(S):$(SS):$(D):BD$(ADDR):Update") {
-  field(DESC, "Update Board Params")
-  field(DOL1, "1")
-  field(LNK1, "$(S):$(SS):$(D):BD$(ADDR):BDName.PROC")
-  field(DOL2, "1")
-  field(LNK2, "$(S):$(SS):$(D):BD$(ADDR):ChNum.PROC")
-  field(DOL3, "1")
-  field(LNK3, "$(S):$(SS):$(D):BD$(ADDR):FWRelease.PROC")
-  field(DOL4, "1")
-  field(LNK4, "$(S):$(SS):$(D):BD$(ADDR):SerialNum.PROC")
-  field(DOL5, "1")
-  field(LNK5, "$(S):$(SS):$(D):BD$(ADDR):Intlock.PROC")
-  field(DOL6, "1")
-  field(LNK6, "$(S):$(SS):$(D):BD$(ADDR):BDAlarm.PROC")
-  field(SCAN, "10 second")
-  field(PINI, "YES")
-}
-
 record(seq, "$(S):$(SS):$(D):BD$(ADDR):UpdateChannel") {
   field(DESC, "Update Channel Params")
   field(DOL1, "1")
@@ -34,6 +16,10 @@ record(seq, "$(S):$(SS):$(D):BD$(ADDR):UpdateChannel") {
   field(LNK3, "$(S):$(SS):$(D):BD$(ADDR):Ch2Trigger.PROC")
   field(DOL4, "1")
   field(LNK4, "$(S):$(SS):$(D):BD$(ADDR):Ch3Trigger.PROC")
+  field(DOL5, "1")
+  field(LNK5, "$(S):$(SS):$(D):BD$(ADDR):BDAlarm.PROC")
+  field(DOL6, "1")
+  field(LNK6, "$(S):$(SS):$(D):BD$(ADDR):Intlock.PROC")  
   field(SCAN, "1 second")
   field(PINI, "YES")
 }
@@ -78,7 +64,7 @@ record(stringin, "$(S):$(SS):$(D):BD$(ADDR):ChNum") {
   field(DTYP, "stream")
   field(INP, "@n1471.proto readstring($(ADDR),BDNCH) $(PORT)")
   field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
-    field(PINI, "YES")
+  field(PINI, "YES")
 
 }
 
@@ -88,6 +74,7 @@ record(stringin, "$(S):$(SS):$(D):BD$(ADDR):FWRelease") {
   field(DTYP, "stream")
   field(INP, "@n1471.proto readstring($(ADDR),BDFREL) $(PORT)")
   field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+  field(PINI, "YES")
 }
 
 record(stringin, "$(S):$(SS):$(D):BD$(ADDR):SerialNum") {
@@ -95,6 +82,7 @@ record(stringin, "$(S):$(SS):$(D):BD$(ADDR):SerialNum") {
   field(DTYP, "stream")
   field(INP, "@n1471.proto readstring($(ADDR),BDSNUM) $(PORT)")
   field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+  field(PINI, "YES")
 }
 
 record(stringin, "$(S):$(SS):$(D):BD$(ADDR):Intlock") {
@@ -109,5 +97,24 @@ record(mbbiDirect, "$(S):$(SS):$(D):BD$(ADDR):BDAlarm") {
   field(DTYP, "stream")
   field(INP, "@n1471.proto readint($(ADDR),BDALARM) $(PORT)")
   field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+}
+
+record(stringin, "$(S):$(SS):$(D):BD$(ADDR):AnyOutput"){
+	field(DESC, "Any output from the crate")
+	field(DTYP, "stream")
+	field(INP, "@n1471.proto readall $(PORT)")
+	field(SCAN, "I/O Intr")
+}
+
+record(stringin, "$(S):$(SS):$(D):BD$(ADDR):CMDOutput"){
+	field(DESC, "Output from general command")
+	field(DTYP, "stream")
+	field(INP, "@n1471.proto readall $(PORT)")
+}
+record(stringout, "$(S):$(SS):$(D):BD$(ADDR):CMD"){
+	field(DESC, "General command to the crate")
+	field(DTYP, "stream")
+	field(OUT, "@n1471.proto generalcmd $(PORT)")
+	field(FLNK, "$(S):$(SS):$(D):BD$(ADDR):CMDOutput")
 }
 

@@ -2,22 +2,22 @@
 # S: system
 # SS: subsystem
 # D:  device
-# ADDR: Board Address
+# ADDR: Board Address, must be in format "xx", for example, 00, 01,12
 # CH: channel number 0-3
 # PORT: asyn port for the crate
 
 file db/n1471.template
 {
 pattern { S, SS, D, ADDR, PORT }
-    { "Demo", "HV", "N1471", "0", "demoN1471" }
+    { "Demo", "HV", "N1471", "00", "demoN1471" }
 }
 
 file db/n1471ch.template
 {
 pattern {S, SS, D, ADDR, CH, PORT }
-     { "Demo", "HV", "N1471", "0", "0", "demoN1471" }
-     { "Demo", "HV", "N1471", "0", "1", "demoN1471" }
-     { "Demo", "HV", "N1471", "0", "2", "demoN1471" }
-     { "Demo", "HV", "N1471", "0", "3", "demoN1471" }
+     { "Demo", "HV", "N1471", "00", "0", "demoN1471" }
+     { "Demo", "HV", "N1471", "00", "1", "demoN1471" }
+     { "Demo", "HV", "N1471", "00", "2", "demoN1471" }
+     { "Demo", "HV", "N1471", "00", "3", "demoN1471" }
 }
 
