@@ -11,7 +11,13 @@ IP地址为NIM8304/8301机箱的IP地址。
 drvAsynIPPortConfigure("demoNIM8304_2","192.168.37.51:8100",0,0,0)
 
 2. EPICS Database 配置文件: substitutions/demoNIM8304.substitutions
-通过复制现有行来增加机箱。
+通过复制和修改现有行来增加机箱。
+
+3.在iocBoot/iocmain/目录下执行 “./st.cmd” 命令启动IOC
+
+
+
+
 
 
 

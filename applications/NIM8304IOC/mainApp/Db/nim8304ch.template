@@ -42,14 +42,6 @@ record(ai, "$(S):$(SS):$(D):$(CH_NAME):IMon") {
   field(SDIS, "$(S):$(SS):$(D):Disable")
 }
 
-record(ai, "$(S):$(SS):$(D):$(CH_NAME):IMon") {
-  field(DESC, "Monitor Current")
-  field(DTYP, "stream")
-  field (INP,  "@nim8304.proto readai($(CH),IMON) $(PORT)")
-  field(PREC, "2")
-  field(EGU, "A")
-  field(SDIS, "$(S):$(SS):$(D):Disable")
-}
 
 record(ai, "$(S):$(SS):$(D):$(CH_NAME):ISet:RBV") {
   field(DESC, "Current Limit")
