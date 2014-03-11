@@ -2,7 +2,11 @@ N8304机箱IOC 应用程序说明书
 
 硬件连接：机箱通过网口与电脑连接
 
-1. 启动配置文件：iocBoot/iocmain/st.cmd
+1. 修改启动配置文件：iocBoot/iocmain/st.cmd
+
+若该IOC为独立安装，则修改下面这行为IOC解压后的根目录：
+epicsEnvSet("TOP","/home/controls/ship/NIM8304IOC")
+
 下面这行用于配置与NIM机箱的连接：
 drvAsynIPPortConfigure("demoNIM8304","192.168.37.50:8100",0,0,0)
 其中第一个参数 “demoNIM8304"为Asyn驱动的Port地址，用于标识该机箱连接。可以是任意字符串。在substitutions文件中需要用该port来标识该机箱。
