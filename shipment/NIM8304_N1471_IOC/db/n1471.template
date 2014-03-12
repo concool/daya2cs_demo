@@ -1,0 +1,120 @@
+#Database file for each board
+# Macros:
+# S: system
+# SS: subsystem
+# D:  device
+# ADDR: Board Address
+# PORT: asyn port for the crate
+
+record(seq, "$(S):$(SS):$(D):BD$(ADDR):UpdateChannel") {
+  field(DESC, "Update Channel Params")
+  field(DOL1, "1")
+  field(LNK1, "$(S):$(SS):$(D):BD$(ADDR):Ch0Trigger.PROC")
+  field(DOL2, "1")
+  field(LNK2, "$(S):$(SS):$(D):BD$(ADDR):Ch1Trigger.PROC")
+  field(DOL3, "1")
+  field(LNK3, "$(S):$(SS):$(D):BD$(ADDR):Ch2Trigger.PROC")
+  field(DOL4, "1")
+  field(LNK4, "$(S):$(SS):$(D):BD$(ADDR):Ch3Trigger.PROC")
+  field(DOL5, "1")
+  field(LNK5, "$(S):$(SS):$(D):BD$(ADDR):BDAlarm.PROC")
+  field(DOL6, "1")
+  field(LNK6, "$(S):$(SS):$(D):BD$(ADDR):Intlock.PROC")  
+  field(SCAN, "1 second")
+  field(PINI, "YES")
+}
+
+# Channel Trigger PVs
+record(longout, "$(S):$(SS):$(D):BD$(ADDR):Ch0Trigger") {
+  field(VAL, "0")
+  field(PINI, "YES")  
+}
+record(longout, "$(S):$(SS):$(D):BD$(ADDR):Ch1Trigger") {
+  field(VAL, "0")
+  field(PINI, "YES")  
+}
+record(longout, "$(S):$(SS):$(D):BD$(ADDR):Ch2Trigger") {
+  field(VAL, "0")
+  field(PINI, "YES")  
+}
+record(longout, "$(S):$(SS):$(D):BD$(ADDR):Ch3Trigger") {
+  field(VAL, "0")
+  field(PINI, "YES")  
+}
+
+record(bo, "$(S):$(SS):$(D):BD$(ADDR):Disable") {
+  field(DESC, "Disable comms")
+  field(PINI, "YES")
+  field(VAL, "0")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Enabled")
+  field(ONAM, "Disabled")
+}
+
+record(stringin, "$(S):$(SS):$(D):BD$(ADDR):BDName") {
+  field(DESC, "BoardName")
+  field(DTYP, "stream")
+  field(INP, "@n1471.proto readstring($(ADDR),BDNAME) $(PORT)")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+  field(PINI, "YES")
+}
+
+record(stringin, "$(S):$(SS):$(D):BD$(ADDR):ChNum") {
+  field(DESC, "Board Number of Channels")
+  field(DTYP, "stream")
+  field(INP, "@n1471.proto readstring($(ADDR),BDNCH) $(PORT)")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+  field(PINI, "YES")
+
+}
+
+
+record(stringin, "$(S):$(SS):$(D):BD$(ADDR):FWRelease") {
+  field(DESC, "Board Firmware release")
+  field(DTYP, "stream")
+  field(INP, "@n1471.proto readstring($(ADDR),BDFREL) $(PORT)")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+  field(PINI, "YES")
+}
+
+record(stringin, "$(S):$(SS):$(D):BD$(ADDR):SerialNum") {
+  field(DESC, "Board Serial number")
+  field(DTYP, "stream")
+  field(INP, "@n1471.proto readstring($(ADDR),BDSNUM) $(PORT)")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+  field(PINI, "YES")
+}
+
+record(stringin, "$(S):$(SS):$(D):BD$(ADDR):Intlock") {
+  field(DESC, "Board Interlock")
+  field(DTYP, "stream")
+  field(INP, "@n1471.proto readstring($(ADDR),BDILK) $(PORT)")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+}
+
+record(mbbiDirect, "$(S):$(SS):$(D):BD$(ADDR):BDAlarm") {
+  field(DESC, "Board Alarm Status")
+  field(DTYP, "stream")
+  field(INP, "@n1471.proto readint($(ADDR),BDALARM) $(PORT)")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+}
+
+record(stringin, "$(S):$(SS):$(D):BD$(ADDR):AnyOutput"){
+	field(DESC, "Any output from the crate")
+	field(DTYP, "stream")
+	field(INP, "@n1471.proto readall $(PORT)")
+	field(SCAN, "I/O Intr")
+}
+
+record(stringin, "$(S):$(SS):$(D):BD$(ADDR):CMDOutput"){
+	field(DESC, "Output from general command")
+	field(DTYP, "stream")
+	field(INP, "@n1471.proto readall $(PORT)")
+}
+record(stringout, "$(S):$(SS):$(D):BD$(ADDR):CMD"){
+	field(DESC, "General command to the crate")
+	field(DTYP, "stream")
+	field(OUT, "@n1471.proto generalcmd $(PORT)")
+	field(FLNK, "$(S):$(SS):$(D):BD$(ADDR):CMDOutput")
+}
+

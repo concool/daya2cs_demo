@@ -1,0 +1,183 @@
+#Database file for each channel of a board
+# Macros:
+# S: system
+# SS: subsystem
+# D:  device
+# ADDR: Board Address
+# CH: channel number 0-3
+# PORT: asyn port for the crate
+
+record(seq, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):Update") {
+  field(DESC, "Update Ch$(CH) Params")
+  field(DOL1, "1")
+  field(LNK1, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):VSet:RBV.PROC")
+  field(DOL2, "1")
+  field(LNK2, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):VMon.PROC")
+  field(DOL3, "1")
+  field(LNK3, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):ISet:RBV.PROC")
+  field(DOL4, "1")
+  field(LNK4, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):IMon.PROC")
+  field(DOL5, "1")
+  field(LNK5, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):RUP.PROC")
+  field(DOL6, "1")
+  field(LNK6, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):RDW.PROC")
+  field(DOL7, "1")
+  field(LNK7, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):Status.PROC")  
+}
+
+record(longout, "$(S):$(SS):$(D):BD$(ADDR):Ch$(CH)Trigger") {
+  field(VAL, "1")
+  field(OUT, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):Update.PROC PP")
+}
+
+record(ao, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):VSet") {
+  field(DESC, "HV Setpoint")
+  field(DTYP, "stream")
+  field(FLNK, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):VSet:RBV")
+  field(OUT, "@n1471.proto writechan($(ADDR),$(CH),VSET) $(PORT)")
+  field(PREC, "1")
+  field(EGU, "V")
+  field(DRVH, "8000")
+  field(DRVL, "0")
+  field(PINI, "NO")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+}
+
+record(ai, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):VSet:RBV") {
+  field(DESC, "HV Setpoint Readback")
+  field(DTYP, "stream")
+  field(INP, "@n1471.proto readchan($(ADDR),$(CH),VSET) $(PORT)")
+  field(PREC, "1")
+  field(EGU, "V")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+}
+
+record(ai, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):VMon") {
+  field(DESC, "HV Monitor")
+  field(DTYP, "stream")
+  field(INP, "@n1471.proto readchan($(ADDR),$(CH),VMON) $(PORT)")
+  field(PREC, "1")
+  field(EGU, "V")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+}
+
+
+record(ao, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):ISet") {
+  field(DESC, "HV Current Setpoint")
+  field(DTYP, "stream")
+  field(FLNK, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):ISet:RBV")
+  field(OUT, "@n1471.proto writechan($(ADDR),$(CH),ISET) $(PORT)")
+  field(PREC, "2")
+  field(EGU, "uA")
+  field(DRVH, "3000")
+  field(DRVL, "0")
+  field(PINI, "NO")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+}
+
+record(ai, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):ISet:RBV") {
+  field(DESC, "HV Current Setpoint Readback")
+  field(DTYP, "stream")
+  field(INP, "@n1471.proto readchan($(ADDR),$(CH),ISET) $(PORT)")
+  field(PREC, "2")
+  field(EGU, "uA")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+}
+
+record(ai, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):IMon") {
+  field(DESC, "HV Current Monitor")
+  field(DTYP, "stream")
+  field(INP, "@n1471.proto readchan($(ADDR),$(CH),IMON) $(PORT)")
+  field(PREC, "2")
+  field(EGU, "uA")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+}
+
+record(ao, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):RUPSet") {
+  field(DESC, "HV Ramp Up Rate")
+  field(DTYP, "stream")
+  field(FLNK, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):RUP")
+  field(OUT, "@n1471.proto writechan($(ADDR),$(CH),RUP) $(PORT)")
+  field(PREC, "0")
+  field(EGU, "V/s")
+  field(DRVH, "500")
+  field(DRVL, "1")
+  field(PINI, "NO")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+}
+
+
+record(ai, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):RUP") {
+  field(DESC, "HV Ramp Up Rate Readback")
+  field(DTYP, "stream")
+  field(INP, "@n1471.proto readchan($(ADDR),$(CH),RUP) $(PORT)")
+  field(PREC, "0")
+  field(EGU, "V/s")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+}
+
+record(ao, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):RDWSet") {
+  field(DESC, "HV Ramp Down Rate")
+  field(DTYP, "stream")
+  field(FLNK, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):RDW")
+  field(OUT, "@n1471.proto writechan($(ADDR),$(CH),RDW) $(PORT)")
+  field(PREC, "0")
+  field(EGU, "V/s")
+  field(DRVH, "500")
+  field(DRVL, "1")
+  field(PINI, "NO")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+}
+
+record(ai, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):RDW") {
+  field(DESC, "HV Ramp Down Rate Readback")
+  field(DTYP, "stream")
+  field(INP, "@n1471.proto readchan($(ADDR),$(CH),RDW) $(PORT)")
+  field(PREC, "0")
+  field(EGU, "V/s")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+}
+
+
+record(mbbiDirect, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):Status") {
+  field(DESC, "Status")
+  field(DTYP, "stream")
+  field(INP, "@n1471.proto readchanint($(ADDR),$(CH),STAT) $(PORT)")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+}
+
+
+record(bi, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):OnState") {
+  field(DESC, "Channel enabled readback")
+  field(INP, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):Status.B0 CP")
+  field(ONAM, "ON")
+  field(ZNAM, "OFF")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+}
+
+record(bi, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):RUPState") {
+  field(DESC, "Channel Ramp Up State")
+  field(INP, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):Status.B1 CP")
+  field(ONAM, "ON")
+  field(ZNAM, "OFF")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+}
+
+record(bi, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):RDWState") {
+  field(DESC, "Channel Ramp Down State")
+  field(INP, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):Status.B2 CP")
+  field(ONAM, "ON")
+  field(ZNAM, "OFF")
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+}
+
+record(bo, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):OnSet") {
+  field(DESC, "Channel enabled")
+  field(DTYP, "stream")  
+  field(OUT, "@n1471.proto writechanon($(ADDR),$(CH)) $(PORT)")
+  field(ONAM, "ON")
+  field(ZNAM, "OFF")
+  field(FLNK, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):Status")  
+  field(SDIS, "$(S):$(SS):$(D):BD$(ADDR):Disable")
+}
+

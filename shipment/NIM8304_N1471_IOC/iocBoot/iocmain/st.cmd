@@ -17,12 +17,15 @@ main_registerRecordDeviceDriver pdbbase
 #configure NIM8304 crate IP address
 drvAsynIPPortConfigure("demoNIM8304","192.168.37.50:8100",0,0,0)
 
-## Load record instances
-#dbLoadRecords("db/xxx.db","user=chenxhHost")
+#configure N1471 to be a separate TCP/IP connection
+drvAsynIPPortConfigure("demoN1471","192.168.37.50:8100",0,0,0)
+
 
 dbLoadTemplate "substitutions/demoNIM8304.substitutions"
+dbLoadTemplate "substitutions/demoN1471.substitutions"
+
+
 cd ${TOP}/iocBoot/${IOC}
 iocInit
 
-## Start any sequence programs
-#seq sncxxx,"user=chenxhHost"
+
