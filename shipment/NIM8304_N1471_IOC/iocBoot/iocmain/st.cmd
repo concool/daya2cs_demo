@@ -3,7 +3,7 @@
 
 epicsEnvSet("ARCH","linux-x86_64")
 epicsEnvSet("IOC","iocmain")
-epicsEnvSet("TOP","/home/controls/ship/NIM8304IOC")
+epicsEnvSet("TOP","/home/controls/bldemo/shipment/NIM8304_N1471_IOC")
 
 
 cd ${TOP}
