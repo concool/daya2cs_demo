@@ -10,19 +10,24 @@
 record(seq, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):Update") {
   field(DESC, "Update Ch$(CH) Params")
   field(DOL1, "1")
+  field(LNK1, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):VMon.PROC")
+  field(DOL2, "1")
+  field(LNK2, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):IMon.PROC")
+  field(DOL3, "1")
+  field(LNK3, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):Status.PROC")  
+}
+
+record(seq, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):UpdateSlow") {
+  field(DESC, "Update Ch$(CH) slow Params")
+  field(DOL1, "1")
   field(LNK1, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):VSet:RBV.PROC")
   field(DOL2, "1")
-  field(LNK2, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):VMon.PROC")
+  field(LNK2, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):ISet:RBV.PROC")
   field(DOL3, "1")
-  field(LNK3, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):ISet:RBV.PROC")
+  field(LNK3, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):RUP.PROC")
   field(DOL4, "1")
-  field(LNK4, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):IMon.PROC")
-  field(DOL5, "1")
-  field(LNK5, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):RUP.PROC")
-  field(DOL6, "1")
-  field(LNK6, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):RDW.PROC")
-  field(DOL7, "1")
-  field(LNK7, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):Status.PROC")  
+  field(LNK4, "$(S):$(SS):$(D):BD$(ADDR):CH$(CH):RDW.PROC")
+  field(SCAN, "5 second")
 }
 
 record(longout, "$(S):$(SS):$(D):BD$(ADDR):Ch$(CH)Trigger") {
