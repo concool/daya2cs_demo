@@ -124,5 +124,15 @@ record(bi, "$(S):$(SS):$(D):$(CH_NAME):CalibrationError") {
   field(OSV, "MINOR")
 }
 
+record(calc,"$(S):$(SS):$(D):$(CH_NAME):SumAlarm"){
+	field(DESC, "Summary Alarm Status of the Channel")
+	field(SCAN, "1 second")
+	field(CALC, "A||B||C||D")
+	field(INPA, "$(S):$(SS):$(D):$(CH_NAME):CalibrationError MSS")
+	field(INPB, "$(S):$(SS):$(D):$(CH_NAME):UnderVoltage MSS")
+	field(INPC, "$(S):$(SS):$(D):$(CH_NAME):OverVoltage MSS")
+	field(INPD, "$(S):$(SS):$(D):$(CH_NAME):OverCurrent MSS")
+}
+
 
 

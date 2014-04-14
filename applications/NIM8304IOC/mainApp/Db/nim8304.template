@@ -293,3 +293,15 @@ record(mbbo, "$(S):$(SS):$(D):FanSpeedSet") {
   field(SXVL, "6")
   field(SXST, "3000 RPM")
 }
+
+record(calc,"$(S):$(SS):$(D):SumAlarm"){
+	field(DESC, "Summary Alarm Status of the Crate")
+	field(SCAN, "1 second")
+	field(CALC, "A||B||C||D||E||F")
+	field(INPA, "$(S):$(SS):$(D):P6V:SumAlarm MSS")
+	field(INPB, "$(S):$(SS):$(D):N6V:SumAlarm MSS")
+	field(INPC, "$(S):$(SS):$(D):P12V:SumAlarm MSS")
+	field(INPD, "$(S):$(SS):$(D):N12V:SumAlarm MSS")
+	field(INPE, "$(S):$(SS):$(D):P24V:SumAlarm MSS")
+	field(INPF, "$(S):$(SS):$(D):N24V:SumAlarm MSS")
+}
