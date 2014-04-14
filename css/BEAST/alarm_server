@@ -1,11 +1,16 @@
 #!/bin/sh
 #
-# scan_server  Service-type script to control the scan server
+# alarm_server  Service-type script to control the alarm server
 #
-# This script is copied to /etc/rc.d/init.d
+# This script should be copied to /etc/rc.d/init.d
 # and registered with /sbin/chkconfig to run as a Linux service
 #
-# chkconfig: - 80 20
+#sudo cp alarm_server /etc/rc.d/init.d/
+#sudo chkconfig --add alarm_server
+#sudo chkconfig alarm_server on
+#sudo chkconfig --list alarm_server
+#service alarm_server //check if it is successfully installed
+#service alarm_server start //start alarm server
 #
 # kasemirk@ornl.gov
 
