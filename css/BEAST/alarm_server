@@ -9,7 +9,7 @@
 #
 # kasemirk@ornl.gov
 
-ALARM_SERVER=/home/controls/css/BEAST/AlarmServer_3.2.16/AlarmServer
+ALARM_SERVER=/home/controls/css/BEAST/AlarmServer_3.2.16
 
 
 # Default scan server RMI uses 4810, 4811
@@ -27,7 +27,7 @@ unset DISPLAY
 
 function start()
 {
-	su - $USER -c "nohup $SCAN_SERVER/ScanServer $ARGS >>$SCAN_SERVER/console.log 2>&1 &"
+	su - $USER -c "nohup $ALARM_SERVER/AlarmServer $ARGS >>$ALARM_SERVER/console.log 2>&1 &"
 }
 
 function stop()
