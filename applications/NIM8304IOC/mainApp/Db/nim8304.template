@@ -122,7 +122,7 @@ record(bi, "$(S):$(SS):$(D):LineAlarm") {
 
 record(bi, "$(S):$(SS):$(D):PSCtrTempFail") {
   field(DESC, "Temperature on PS Ctr < 5°C or > 65°C")
-  field(INP, "$(S):$(SS):$(D):Status.B2 CP")
+  field(INP, "$(S):$(SS):$(D):Status.B2 CP  MSS")
   field(ONAM, "FAIL")
   field(ZNAM, "OK")
    field(OSV, "MAJOR")
@@ -130,7 +130,7 @@ record(bi, "$(S):$(SS):$(D):PSCtrTempFail") {
 
 record(bi, "$(S):$(SS):$(D):PSTempFail") {
   field(DESC, "Temperature on PS > 70°C")
-  field(INP, "$(S):$(SS):$(D):Status.B3 CP")
+  field(INP, "$(S):$(SS):$(D):Status.B3 CP  MSS")
   field(ONAM, "FAIL")
   field(ZNAM, "OK")
    field(OSV, "MAJOR")
@@ -138,7 +138,7 @@ record(bi, "$(S):$(SS):$(D):PSTempFail") {
 
 record(bi, "$(S):$(SS):$(D):PSOverCurrent") {
   field(DESC, "PS in Over Current")
-  field(INP, "$(S):$(SS):$(D):Status.B4 CP")
+  field(INP, "$(S):$(SS):$(D):Status.B4 CP  MSS")
   field(ONAM, "Bad")
   field(ZNAM, "OK")
    field(OSV, "MAJOR")
@@ -146,7 +146,7 @@ record(bi, "$(S):$(SS):$(D):PSOverCurrent") {
 
 record(bi, "$(S):$(SS):$(D):PSOutVoltage") {
   field(DESC, "PS Voltage out of range")
-  field(INP, "$(S):$(SS):$(D):Status.B5 CP")
+  field(INP, "$(S):$(SS):$(D):Status.B5 CP  MSS")
   field(ONAM, "Bad")
   field(ZNAM, "OK")
    field(OSV, "MAJOR")
@@ -154,28 +154,28 @@ record(bi, "$(S):$(SS):$(D):PSOutVoltage") {
 
 record(bi, "$(S):$(SS):$(D):FanState") {
   field(DESC, "PS in Over Current")
-  field(INP, "$(S):$(SS):$(D):Status.B9 CP")
+  field(INP, "$(S):$(SS):$(D):Status.B9 CP  MSS")
   field(ONAM, "ON")
   field(ZNAM, "OFF")
 }
 
 record(bi, "$(S):$(SS):$(D):Fan1Fail") {
   field(DESC, "Fan 1 Fail")
-  field(INP, "$(S):$(SS):$(D):Status.BA CP")
+  field(INP, "$(S):$(SS):$(D):Status.BA CP  MSS")
   field(ONAM, "Fail")
   field(ZNAM, "OK")
   field(OSV, "MINOR")
 }
 record(bi, "$(S):$(SS):$(D):Fan2Fail") {
   field(DESC, "Fan 1 Fail")
-  field(INP, "$(S):$(SS):$(D):Status.BB CP")
+  field(INP, "$(S):$(SS):$(D):Status.BB CP  MSS")
   field(ONAM, "Fail")
   field(ZNAM, "OK")
   field(OSV, "MINOR")
 }
 record(bi, "$(S):$(SS):$(D):Fan3Fail") {
   field(DESC, "Fan 3 Fail")
-  field(INP, "$(S):$(SS):$(D):Status.BC CP")
+  field(INP, "$(S):$(SS):$(D):Status.BC CP  MSS")
   field(ONAM, "Fail")
   field(ZNAM, "OK")
   field(OSV, "MINOR")
@@ -183,7 +183,7 @@ record(bi, "$(S):$(SS):$(D):Fan3Fail") {
 
 record(bi, "$(S):$(SS):$(D):FanTempFail") {
   field(DESC, " Fan Temperature < 5°C or > 65°C")
-  field(INP, "$(S):$(SS):$(D):Status.BD CP")
+  field(INP, "$(S):$(SS):$(D):Status.BD CP  MSS")
   field(ONAM, "Fail")
   field(ZNAM, "OK")
   field(OSV, "MINOR")
@@ -297,11 +297,14 @@ record(mbbo, "$(S):$(SS):$(D):FanSpeedSet") {
 record(calc,"$(S):$(SS):$(D):SumAlarm"){
 	field(DESC, "Summary Alarm Status of the Crate")
 	field(SCAN, "1 second")
-	field(CALC, "A||B||C||D||E||F")
-	field(INPA, "$(S):$(SS):$(D):P6V:SumAlarm MSS")
-	field(INPB, "$(S):$(SS):$(D):N6V:SumAlarm MSS")
-	field(INPC, "$(S):$(SS):$(D):P12V:SumAlarm MSS")
-	field(INPD, "$(S):$(SS):$(D):N12V:SumAlarm MSS")
-	field(INPE, "$(S):$(SS):$(D):P24V:SumAlarm MSS")
-	field(INPF, "$(S):$(SS):$(D):N24V:SumAlarm MSS")
+	field(CALC, "A||B||C||D||E||F||G||H||I")
+	field(INPA, "$(S):$(SS):$(D):LineAlarm MSS")
+	field(INPB, "$(S):$(SS):$(D):PSCtrTempFail MSS")
+	field(INPC, "$(S):$(SS):$(D):PSTempFail MSS")
+	field(INPD, "$(S):$(SS):$(D):PSOverCurrent  MSS")
+	field(INPE, "$(S):$(SS):$(D):PSOutVoltage MSS")
+	field(INPF, "$(S):$(SS):$(D):Fan1Fail MSS")
+	field(INPG, "$(S):$(SS):$(D):Fan2Fail MSS")
+	field(INPH, "$(S):$(SS):$(D):Fan3Fail MSS")
+	field(INPI, "$(S):$(SS):$(D):FanTempFail MSS")
 }
