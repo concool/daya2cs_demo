@@ -118,7 +118,7 @@ record(bi, "$(S):$(SS):$(D):$(CH_NAME):UnderVoltage") {
 
 record(bi, "$(S):$(SS):$(D):$(CH_NAME):CalibrationError") {
   field(DESC, "Error on coefficient of calibration")
-  field(INP, "$(S):$(SS):$(D):$(CH_NAME):Status:RBV.B8 CP  MSS")
+  field(INP, "$(S):$(SS):$(D):$(CH_NAME):Status.B8 CP  MSS")
   field(ONAM, "Bad")
   field(ZNAM, "OK")
   field(OSV, "MINOR")
