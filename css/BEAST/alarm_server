@@ -20,7 +20,7 @@ CONSOLE=4809
 INI=/tmp/alarm_server.ini
 cat /home/controls/css/settings.ini /home/controls/bldemo/css/settings.ini >$INI
 
-ARGS="-console $CONSOLE -data $ALARM_SERVER/workspace -consoleLog -pluginCustomization $INI
+ARGS="-console $CONSOLE -data $ALARM_SERVER/workspace -consoleLog -pluginCustomization $INI"
 USER=chenxh
 
 unset DISPLAY
