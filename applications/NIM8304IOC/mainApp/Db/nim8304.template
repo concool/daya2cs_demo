@@ -117,6 +117,7 @@ record(bi, "$(S):$(SS):$(D):LineAlarm") {
   field(INP, "$(S):$(SS):$(D):Status.B1 CP")
   field(ONAM, "Alarm")
   field(ZNAM, "No Alarm")
+   field(OSV, "MAJOR")
 }
 
 record(bi, "$(S):$(SS):$(D):PSCtrTempFail") {
@@ -124,6 +125,7 @@ record(bi, "$(S):$(SS):$(D):PSCtrTempFail") {
   field(INP, "$(S):$(SS):$(D):Status.B2 CP")
   field(ONAM, "FAIL")
   field(ZNAM, "OK")
+   field(OSV, "MAJOR")
 }
 
 record(bi, "$(S):$(SS):$(D):PSTempFail") {
@@ -131,6 +133,7 @@ record(bi, "$(S):$(SS):$(D):PSTempFail") {
   field(INP, "$(S):$(SS):$(D):Status.B3 CP")
   field(ONAM, "FAIL")
   field(ZNAM, "OK")
+   field(OSV, "MAJOR")
 }
 
 record(bi, "$(S):$(SS):$(D):PSOverCurrent") {
@@ -138,6 +141,7 @@ record(bi, "$(S):$(SS):$(D):PSOverCurrent") {
   field(INP, "$(S):$(SS):$(D):Status.B4 CP")
   field(ONAM, "Bad")
   field(ZNAM, "OK")
+   field(OSV, "MAJOR")
 }
 
 record(bi, "$(S):$(SS):$(D):PSOutVoltage") {
@@ -145,6 +149,7 @@ record(bi, "$(S):$(SS):$(D):PSOutVoltage") {
   field(INP, "$(S):$(SS):$(D):Status.B5 CP")
   field(ONAM, "Bad")
   field(ZNAM, "OK")
+   field(OSV, "MAJOR")
 }
 
 record(bi, "$(S):$(SS):$(D):FanState") {
@@ -159,18 +164,21 @@ record(bi, "$(S):$(SS):$(D):Fan1Fail") {
   field(INP, "$(S):$(SS):$(D):Status.BA CP")
   field(ONAM, "Fail")
   field(ZNAM, "OK")
+  field(OSV, "MINOR")
 }
 record(bi, "$(S):$(SS):$(D):Fan2Fail") {
   field(DESC, "Fan 1 Fail")
   field(INP, "$(S):$(SS):$(D):Status.BB CP")
   field(ONAM, "Fail")
   field(ZNAM, "OK")
+  field(OSV, "MINOR")
 }
 record(bi, "$(S):$(SS):$(D):Fan3Fail") {
   field(DESC, "Fan 3 Fail")
   field(INP, "$(S):$(SS):$(D):Status.BC CP")
   field(ONAM, "Fail")
   field(ZNAM, "OK")
+  field(OSV, "MINOR")
 }
 
 record(bi, "$(S):$(SS):$(D):FanTempFail") {
@@ -178,6 +186,7 @@ record(bi, "$(S):$(SS):$(D):FanTempFail") {
   field(INP, "$(S):$(SS):$(D):Status.BD CP")
   field(ONAM, "Fail")
   field(ZNAM, "OK")
+  field(OSV, "MINOR")
 }
 
 record(bo, "$(S):$(SS):$(D):PowerSet") {
