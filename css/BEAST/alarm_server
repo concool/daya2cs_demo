@@ -9,21 +9,19 @@
 #
 # kasemirk@ornl.gov
 
-SCAN_SERVER=/home/5hz/work/ihep/home/controls/css/ScanServer
+ALARM_SERVER=/home/controls/css/BEAST/AlarmServer_3.2.16/AlarmServer
+
 
 # Default scan server RMI uses 4810, 4811
 # Use 4809 for telnet access
 CONSOLE=4809
-DEBUG="-Djava.rmi.server.logCalls=true -Dsun.rmi.server.logLevel=VERBOSE -Dsun.rmi.transport.logLevel=VERBOSE -Dsun.rmi.transport.tcp.logLevel=VERBOSE"
-DEBUG=""
-
 
 # Combine global settings with beam-line settings
-INI=/tmp/scan_server.ini
-cat /home/5hz/work/ihep/home/controls/css/settings.ini /home/5hz/work/ihep/home/controls/bldemo/css/settings.ini >$INI
+INI=/tmp/alarm_server.ini
+cat /home/controls/css/settings.ini /home/controls/bldemo/css/settings.ini >$INI
 
-ARGS="-console $CONSOLE -data $SCAN_SERVER/workspace -consoleLog -pluginCustomization $INI -vmargs -Djava.rmi.server.hostname=localhost $DEBUG"
-USER=5hz
+ARGS="-console $CONSOLE -data $ALARM_SERVER/workspace -consoleLog -pluginCustomization $INI
+USER=chenxh
 
 unset DISPLAY
 
@@ -49,7 +47,7 @@ restart)
 	start
 	;;
 status)
-	ps aux | fgrep ScanServer | grep -v fgrep
+	ps aux | fgrep AlarmServer | grep -v fgrep
 	;;
 console)
 	telnet localhost $CONSOLE
