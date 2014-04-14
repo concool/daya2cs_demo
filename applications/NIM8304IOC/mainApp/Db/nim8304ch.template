@@ -96,6 +96,7 @@ record(bi, "$(S):$(SS):$(D):$(CH_NAME):OverCurrent") {
   field(INP, "$(S):$(SS):$(D):$(CH_NAME):Status.B1 CP")
   field(ONAM, "Bad")
   field(ZNAM, "OK")
+  field(OSV, "MAJOR")
 }
 
 
@@ -104,6 +105,7 @@ record(bi, "$(S):$(SS):$(D):$(CH_NAME):OverVoltage") {
   field(INP, "$(S):$(SS):$(D):$(CH_NAME):Status.B2 CP")
   field(ONAM, "Bad")
   field(ZNAM, "OK")
+   field(OSV, "MAJOR")
 }
 
 record(bi, "$(S):$(SS):$(D):$(CH_NAME):UnderVoltage") {
@@ -111,6 +113,7 @@ record(bi, "$(S):$(SS):$(D):$(CH_NAME):UnderVoltage") {
   field(INP, "$(S):$(SS):$(D):$(CH_NAME):Status.B3 CP")
   field(ONAM, "Bad")
   field(ZNAM, "OK")
+   field(OSV, "MAJOR")
 }
 
 record(bi, "$(S):$(SS):$(D):$(CH_NAME):CalibrationError") {
@@ -118,8 +121,8 @@ record(bi, "$(S):$(SS):$(D):$(CH_NAME):CalibrationError") {
   field(INP, "$(S):$(SS):$(D):$(CH_NAME):Status:RBV.B8 CP")
   field(ONAM, "Bad")
   field(ZNAM, "OK")
+  field(OSV, "MINOR")
 }
-
 
 
 
