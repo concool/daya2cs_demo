@@ -1,0 +1,34 @@
+通过 Overview PPT简要理解一下什么是EPICS， CSS
+下载并运行CSS： https://ics-web.sns.ornl.gov/css/products.html （下载Basic EPICS版本）
+学习CSS GettingStarted.pptx
+学习1.2EPICS Database PPT前半部分
+跟着1.3 EPICS IOC Database Demo, 做第一个IOC，
+再学习1.2，动手在上一步做的这个IOC上添加一些PV，深入理解EPICS Database Link的概念
+简要熟悉一下这个网站上的record类型和field： https://wiki-ext.aps.anl.gov/epics/index.php/RRM_3-14
+学习BOY.pptx
+学习1.4Channel Access
+找台学习用的Linux机子，下载，安装EPICS base
+学习EPICS_AppDevGuide Chapter 2， 3，在自己的EPICS base上做个IOC
+在下面这个网址下载BLDemoSetup.zip  https://ics-web.sns.ornl.gov/share/xihui/ihepTraining/
+按照EPICS/BeamlineSetupDemo.pdf安装一遍 （省略其中Scan相关的部分）。 这就是197 server上安装EPICS的方式
+学习3.2 StreamDevice
+打开applications/NIM8304IOC, 学习其中的protocol和mainApp/Db下的template文件，理解该IOC的工作原理
+翔宇：在197上，按照NIM8304IOC的方式给N1471IOC加上Alarm PV，放入BEAST系统中
+学习BEAST.pptx,按照BEASTSetup.pdf安装一遍自己的BEAST。按照CSS帮助 （菜单Help->Help Contents）中Alarm学习BEAST的操作。
+看一下Tools/GitTip.pdf
+在网上搜一下Git的教程，理解学习一下Git的简要使用，譬如这个：http://gogojimmy.net/2012/01/17/how-to-use-git-1-git-basic/
+
+这里只是帮助入门，以后工作中要多参考以下资料：
+CSS帮助
+EPICS_AppDevGuide
+https://wiki-ext.aps.anl.gov/epics/index.php/RRM_3-14
+http://www.aps.anl.gov/epics/base/R3-14/8-docs/CAref.html
+
+加入EPICS mailing list: http://www.aps.anl.gov/epics/tech-talk/index.php
+在这里可以问任何关于CSS和EPICS的问题
+
+
+
+
+
+

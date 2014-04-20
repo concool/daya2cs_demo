@@ -1,0 +1,8 @@
+Preparation for CSS Training
+
+Download softIOC from http://ics-web.sns.ornl.gov/kasemir/CSS/Training/#m1
+
+Download Basic EPICS CSS and Sources from http://ics-web.sns.ornl.gov/css/products.html
+
+Download Eclipse from http://www.eclipse.org/downloads/packages/eclipse-rcp-and-rap-developers/indigosr2
+

@@ -1,2 +1,0 @@
-Open IOC application mainApp/Db/database file
-
