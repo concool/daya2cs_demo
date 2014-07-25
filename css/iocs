@@ -1,0 +1,67 @@
+#!/bin/sh
+#
+# iocs  Service-type script to control IOCs
+#
+# This script is copied to /etc/rc.d/init.d
+# and registered with /sbin/chkconfig to run as a Linux service
+#
+# chkconfig: - 80 20
+#
+# kasemirk@ornl.gov
+
+SETUP=/home/controls/bldem/setup.profile
+USER=chenxh
+
+source $SETUP
+unset DISPLAY
+
+DIR=/home/controls/$BEAMLINE
+cd $DIR
+
+start() {
+    case `whoami` in
+    root)
+       su - $USER -c "source $SETUP; cd $DIR; iocs.py start $@"
+       ;;
+    $USER)
+       iocs.py start "$@"
+       ;;
+    *)
+       echo "Must 'start' as user root or $USER"
+       exit -1
+    esac
+}
+
+case $1 in
+start)
+    shift
+    start "$@" 
+    ;;
+stop)
+    shift
+    iocs.py stop "$@"
+    ;;
+restart)
+    shift
+    iocs.py stop "$@"
+    start "$@"
+    ;;
+status)
+    shift
+    iocs.py status "$@"
+    ;;
+console)
+    iocs.py console "$2"
+    ;;
+log)
+    iocs.py log "$2"
+    ;;
+*)  
+    echo "Beamline $BEAMLINE, " `pwd`
+    echo ""
+    echo "Usage: $0 start {IOC} | stop {IOC} | status {IOC} | restart {IOC} | console IOC | log IOC"
+    echo ""
+    echo "For details, see iocs.py -h"
+    exit 2
+esac
+
